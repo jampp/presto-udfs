@@ -1,0 +1,21 @@
+# Presto UDFs
+docker-presto-cluster/presto/
+docker-presto-cluster/presto-base/
+docker-presto-cluster/presto-worker/
+docker-presto-cluster/presto-coordinator/
+docker-presto-cluster/LICENSE
+docker-presto-cluster/docker-compose.yml
+
+.*
+
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+target/

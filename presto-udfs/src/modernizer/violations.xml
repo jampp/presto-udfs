@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<modernizer>
+
+    <!--
+    This file contains the standard set of violations for Modernizer.  The
+    violation names use the same format that javap emits.
+    -->
+
+</modernizer>
