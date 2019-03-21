@@ -13,7 +13,7 @@
  */
 package com.jampp.presto.udfs;
 
-import com.facebook.presto.spi.type.Type;
+import io.prestosql.spi.type.Type;
 
 import java.util.List;
 
