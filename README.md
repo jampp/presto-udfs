@@ -2,7 +2,7 @@
 
 This repository contains the **JSON_SUM** aggregation function.
 It combines all the JSONs in a column by adding the shared keys and appending the rest.
-It's used as an example for our [How to write custom Presto functions](TODO) blogpost.
+It's used as an example for our [How to write custom Presto functions](https://geeks.jampp.com/data-infrastructure/technology/writing-custom-presto-functions/) blogpost.
 
 ## Testing
 
