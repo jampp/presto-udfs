@@ -14,28 +14,28 @@
 
 package com.jampp.presto.udfs.aggregation;
 
-import com.facebook.presto.spi.block.BlockBuilder;
-import com.facebook.presto.spi.function.AggregationFunction;
-import com.facebook.presto.spi.function.AggregationState;
-import com.facebook.presto.spi.function.CombineFunction;
-import com.facebook.presto.spi.function.InputFunction;
-import com.facebook.presto.spi.function.OutputFunction;
-import com.facebook.presto.spi.function.SqlType;
-import com.facebook.presto.spi.type.StandardTypes;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jampp.presto.udfs.aggregation.state.JSONAggregationState;
 import io.airlift.json.ObjectMapperProvider;
 import io.airlift.slice.Slice;
+import io.prestosql.spi.block.BlockBuilder;
+import io.prestosql.spi.function.AggregationFunction;
+import io.prestosql.spi.function.AggregationState;
+import io.prestosql.spi.function.CombineFunction;
+import io.prestosql.spi.function.InputFunction;
+import io.prestosql.spi.function.OutputFunction;
+import io.prestosql.spi.function.SqlType;
+import io.prestosql.spi.type.StandardTypes;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.facebook.presto.spi.type.VarcharType.VARCHAR;
 import static com.jampp.presto.udfs.aggregation.utils.JSONAggregationUtils.mapAsJSONString;
 import static com.jampp.presto.udfs.aggregation.utils.JSONAggregationUtils.merge;
+import static io.prestosql.spi.type.VarcharType.VARCHAR;
 
 @AggregationFunction("json_sum")
 public class JSONAggregation
