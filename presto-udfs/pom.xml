@@ -13,7 +13,7 @@
 
     <groupId>com.jampp.presto</groupId>
     <packaging>presto-plugin</packaging>
-    <version>0.203</version>
+    <version>0.306</version>
 
     <artifactId>presto-jampp-udfs</artifactId>
     <name>presto-jampp-udfs</name>
