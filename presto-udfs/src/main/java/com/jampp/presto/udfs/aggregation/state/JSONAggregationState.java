@@ -14,8 +14,8 @@
 
 package com.jampp.presto.udfs.aggregation.state;
 
-import io.prestosql.spi.function.AccumulatorState;
-import io.prestosql.spi.function.AccumulatorStateMetadata;
+import io.trino.spi.function.AccumulatorState;
+import io.trino.spi.function.AccumulatorStateMetadata;
 
 import java.util.Map;
 

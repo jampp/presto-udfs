@@ -14,9 +14,9 @@
 
 package com.jampp.presto.udfs.aggregation.state;
 
-import io.prestosql.array.ObjectBigArray;
-import io.prestosql.spi.function.AccumulatorStateFactory;
-import io.prestosql.spi.function.GroupedAccumulatorState;
+import io.trino.array.ObjectBigArray;
+import io.trino.spi.function.AccumulatorStateFactory;
+import io.trino.spi.function.GroupedAccumulatorState;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -33,28 +33,16 @@ public class JSONAggregationStateFactory
     }
 
     @Override
-    public Class<? extends JSONAggregationState> getSingleStateClass()
-    {
-        return SingleJSONAggregationState.class;
-    }
-
-    @Override
     public JSONAggregationState createGroupedState()
     {
         return new GroupedJSONAggregationState();
-    }
-
-    @Override
-    public Class<? extends JSONAggregationState> getGroupedStateClass()
-    {
-        return GroupedJSONAggregationState.class;
     }
 
     public static class GroupedJSONAggregationState
             implements GroupedAccumulatorState, JSONAggregationState
     {
         private final ObjectBigArray<Map<String, Object>> maps;
-        private long groupId;
+        private int groupId;
 
         public GroupedJSONAggregationState()
         {
@@ -62,13 +50,13 @@ public class JSONAggregationStateFactory
         }
 
         @Override
-        public void setGroupId(long groupId)
+        public void setGroupId(int groupId)
         {
             this.groupId = groupId;
         }
 
         @Override
-        public void ensureCapacity(long size)
+        public void ensureCapacity(int size)
         {
             maps.ensureCapacity(size);
         }

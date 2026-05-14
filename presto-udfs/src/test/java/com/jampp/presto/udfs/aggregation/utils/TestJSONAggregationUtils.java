@@ -26,7 +26,7 @@ import java.util.Map;
 
 import static com.jampp.presto.udfs.aggregation.utils.JSONAggregationUtils.mapAsJSONString;
 import static com.jampp.presto.udfs.aggregation.utils.JSONAggregationUtils.merge;
-import static org.testng.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestJSONAggregationUtils
 {
@@ -36,7 +36,7 @@ public class TestJSONAggregationUtils
     public void bothJSONsEmpty()
     {
         Map<String, Object> emptyMap = readJSON("{}");
-        assertEquals(mapAsJSONString(merge(emptyMap, emptyMap)), "{}");
+        assertThat(mapAsJSONString(merge(emptyMap, emptyMap))).isEqualTo("{}");
     }
 
     @Test
@@ -44,8 +44,8 @@ public class TestJSONAggregationUtils
     {
         Map<String, Object> leftJSON = readJSON("{}");
         Map<String, Object> rightJSON = readJSON("{\"a\":1, \"b\":2}");
-        assertEquals(mapAsJSONString(merge(leftJSON, rightJSON)), "{\"a\":1, \"b\":2}");
-        assertEquals(mapAsJSONString(merge(rightJSON, leftJSON)), "{\"a\":1, \"b\":2}");
+        assertThat(mapAsJSONString(merge(leftJSON, rightJSON))).isEqualTo("{\"a\":1, \"b\":2}");
+        assertThat(mapAsJSONString(merge(rightJSON, leftJSON))).isEqualTo("{\"a\":1, \"b\":2}");
     }
 
     @Test
@@ -53,8 +53,8 @@ public class TestJSONAggregationUtils
     {
         Map<String, Object> leftJSON = readJSON("{}");
         Map<String, Object> rightJSON = readJSON("{\"a\":1.1, \"b\":2}");
-        assertEquals(mapAsJSONString(merge(leftJSON, rightJSON)), "{\"a\":1.1, \"b\":2}");
-        assertEquals(mapAsJSONString(merge(rightJSON, leftJSON)), "{\"a\":1.1, \"b\":2}");
+        assertThat(mapAsJSONString(merge(leftJSON, rightJSON))).isEqualTo("{\"a\":1.1, \"b\":2}");
+        assertThat(mapAsJSONString(merge(rightJSON, leftJSON))).isEqualTo("{\"a\":1.1, \"b\":2}");
     }
 
     @Test
@@ -62,8 +62,8 @@ public class TestJSONAggregationUtils
     {
         Map<String, Object> leftJSON = readJSON("{\"c\":1, \"b\":1}");
         Map<String, Object> rightJSON = readJSON("{\"a\":1, \"b\":2}");
-        assertEquals(mapAsJSONString(merge(leftJSON, rightJSON)), "{\"a\":1, \"b\":3, \"c\":1}");
-        assertEquals(mapAsJSONString(merge(rightJSON, leftJSON)), "{\"a\":1, \"b\":3, \"c\":1}");
+        assertThat(mapAsJSONString(merge(leftJSON, rightJSON))).isEqualTo("{\"a\":1, \"b\":3, \"c\":1}");
+        assertThat(mapAsJSONString(merge(rightJSON, leftJSON))).isEqualTo("{\"a\":1, \"b\":3, \"c\":1}");
     }
 
     @Test
@@ -71,8 +71,8 @@ public class TestJSONAggregationUtils
     {
         Map<String, Object> leftJSON = readJSON("{\"c\":1.1, \"b\":1}");
         Map<String, Object> rightJSON = readJSON("{\"a\":1, \"b\":2.1}");
-        assertEquals(mapAsJSONString(merge(leftJSON, rightJSON)), "{\"a\":1, \"b\":3.1, \"c\":1.1}");
-        assertEquals(mapAsJSONString(merge(rightJSON, leftJSON)), "{\"a\":1, \"b\":3.1, \"c\":1.1}");
+        assertThat(mapAsJSONString(merge(leftJSON, rightJSON))).isEqualTo("{\"a\":1, \"b\":3.1, \"c\":1.1}");
+        assertThat(mapAsJSONString(merge(rightJSON, leftJSON))).isEqualTo("{\"a\":1, \"b\":3.1, \"c\":1.1}");
     }
 
     @Test
@@ -80,8 +80,8 @@ public class TestJSONAggregationUtils
     {
         Map<String, Object> leftJSON = readJSON("{\"c\":1, \"d\":{\"a\":2}}");
         Map<String, Object> rightJSON = readJSON("{\"a\":1, \"b\":2}");
-        assertEquals(mapAsJSONString(merge(leftJSON, rightJSON)), "{\"a\":1, \"b\":2, \"c\":1, \"d\":{\"a\":2}}");
-        assertEquals(mapAsJSONString(merge(rightJSON, leftJSON)), "{\"a\":1, \"b\":2, \"c\":1, \"d\":{\"a\":2}}");
+        assertThat(mapAsJSONString(merge(leftJSON, rightJSON))).isEqualTo("{\"a\":1, \"b\":2, \"c\":1, \"d\":{\"a\":2}}");
+        assertThat(mapAsJSONString(merge(rightJSON, leftJSON))).isEqualTo("{\"a\":1, \"b\":2, \"c\":1, \"d\":{\"a\":2}}");
     }
 
     @Test
@@ -89,8 +89,8 @@ public class TestJSONAggregationUtils
     {
         Map<String, Object> leftJSON = readJSON("{\"c\":1, \"d\":{\"a\":2.1}}");
         Map<String, Object> rightJSON = readJSON("{\"a\":1, \"b\":2}");
-        assertEquals(mapAsJSONString(merge(leftJSON, rightJSON)), "{\"a\":1, \"b\":2, \"c\":1, \"d\":{\"a\":2.1}}");
-        assertEquals(mapAsJSONString(merge(rightJSON, leftJSON)), "{\"a\":1, \"b\":2, \"c\":1, \"d\":{\"a\":2.1}}");
+        assertThat(mapAsJSONString(merge(leftJSON, rightJSON))).isEqualTo("{\"a\":1, \"b\":2, \"c\":1, \"d\":{\"a\":2.1}}");
+        assertThat(mapAsJSONString(merge(rightJSON, leftJSON))).isEqualTo("{\"a\":1, \"b\":2, \"c\":1, \"d\":{\"a\":2.1}}");
     }
 
     @Test
@@ -98,8 +98,8 @@ public class TestJSONAggregationUtils
     {
         Map<String, Object> leftJSON = readJSON("{\"c\":1, \"b\":{\"a\":2}}");
         Map<String, Object> rightJSON = readJSON("{\"a\":1, \"b\":{\"a\":2, \"b\":3}}");
-        assertEquals(mapAsJSONString(merge(leftJSON, rightJSON)), "{\"a\":1, \"b\":{\"a\":4, \"b\":3}, \"c\":1}");
-        assertEquals(mapAsJSONString(merge(rightJSON, leftJSON)), "{\"a\":1, \"b\":{\"a\":4, \"b\":3}, \"c\":1}");
+        assertThat(mapAsJSONString(merge(leftJSON, rightJSON))).isEqualTo("{\"a\":1, \"b\":{\"a\":4, \"b\":3}, \"c\":1}");
+        assertThat(mapAsJSONString(merge(rightJSON, leftJSON))).isEqualTo("{\"a\":1, \"b\":{\"a\":4, \"b\":3}, \"c\":1}");
     }
 
     @Test
@@ -107,8 +107,8 @@ public class TestJSONAggregationUtils
     {
         Map<String, Object> leftJSON = readJSON("{\"c\":1.2, \"b\":{\"a\":2.3}}");
         Map<String, Object> rightJSON = readJSON("{\"a\":1, \"b\":{\"a\":2, \"b\":3}}");
-        assertEquals(mapAsJSONString(merge(leftJSON, rightJSON)), "{\"a\":1, \"b\":{\"a\":4.3, \"b\":3}, \"c\":1.2}");
-        assertEquals(mapAsJSONString(merge(rightJSON, leftJSON)), "{\"a\":1, \"b\":{\"a\":4.3, \"b\":3}, \"c\":1.2}");
+        assertThat(mapAsJSONString(merge(leftJSON, rightJSON))).isEqualTo("{\"a\":1, \"b\":{\"a\":4.3, \"b\":3}, \"c\":1.2}");
+        assertThat(mapAsJSONString(merge(rightJSON, leftJSON))).isEqualTo("{\"a\":1, \"b\":{\"a\":4.3, \"b\":3}, \"c\":1.2}");
     }
 
     @Test
@@ -116,8 +116,8 @@ public class TestJSONAggregationUtils
     {
         Map<String, Object> leftJSON = readJSON("{}");
         Map<String, Object> rightJSON = readJSON("{\"a\":1, \"b\":{\"a\":2, \"b\":3}}");
-        assertEquals(mapAsJSONString(merge(leftJSON, rightJSON)), "{\"a\":1, \"b\":{\"a\":2, \"b\":3}}");
-        assertEquals(mapAsJSONString(merge(rightJSON, leftJSON)), "{\"a\":1, \"b\":{\"a\":2, \"b\":3}}");
+        assertThat(mapAsJSONString(merge(leftJSON, rightJSON))).isEqualTo("{\"a\":1, \"b\":{\"a\":2, \"b\":3}}");
+        assertThat(mapAsJSONString(merge(rightJSON, leftJSON))).isEqualTo("{\"a\":1, \"b\":{\"a\":2, \"b\":3}}");
     }
 
     @Test
@@ -125,8 +125,8 @@ public class TestJSONAggregationUtils
     {
         Map<String, Object> leftJSON = readJSON("{}");
         Map<String, Object> rightJSON = readJSON("{\"a\":1.1, \"b\":{\"a\":2.2, \"b\":3}}");
-        assertEquals(mapAsJSONString(merge(leftJSON, rightJSON)), "{\"a\":1.1, \"b\":{\"a\":2.2, \"b\":3}}");
-        assertEquals(mapAsJSONString(merge(rightJSON, leftJSON)), "{\"a\":1.1, \"b\":{\"a\":2.2, \"b\":3}}");
+        assertThat(mapAsJSONString(merge(leftJSON, rightJSON))).isEqualTo("{\"a\":1.1, \"b\":{\"a\":2.2, \"b\":3}}");
+        assertThat(mapAsJSONString(merge(rightJSON, leftJSON))).isEqualTo("{\"a\":1.1, \"b\":{\"a\":2.2, \"b\":3}}");
     }
 
     private static Map<String, Object> readJSON(String jsonString)

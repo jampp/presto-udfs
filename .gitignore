@@ -7,6 +7,8 @@ docker-presto-cluster/LICENSE
 docker-presto-cluster/docker-compose.yml
 
 .*
+!.gitignore
+!.mvn/
 
 *.class
 

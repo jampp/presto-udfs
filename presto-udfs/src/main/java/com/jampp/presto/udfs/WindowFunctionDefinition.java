@@ -13,7 +13,7 @@
  */
 package com.jampp.presto.udfs;
 
-import io.prestosql.spi.type.Type;
+import io.trino.spi.type.Type;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ import java.util.List;
  */
 public interface WindowFunctionDefinition
 {
-    public String getName();
+    String getName();
 
-    public Type getReturnType();
+    Type getReturnType();
 
-    public List<? extends Type> getArgumentTypes();
+    List<? extends Type> getArgumentTypes();
 }

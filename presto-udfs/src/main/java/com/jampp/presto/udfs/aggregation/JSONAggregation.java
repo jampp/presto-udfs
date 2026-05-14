@@ -19,14 +19,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jampp.presto.udfs.aggregation.state.JSONAggregationState;
 import io.airlift.json.ObjectMapperProvider;
 import io.airlift.slice.Slice;
-import io.prestosql.spi.block.BlockBuilder;
-import io.prestosql.spi.function.AggregationFunction;
-import io.prestosql.spi.function.AggregationState;
-import io.prestosql.spi.function.CombineFunction;
-import io.prestosql.spi.function.InputFunction;
-import io.prestosql.spi.function.OutputFunction;
-import io.prestosql.spi.function.SqlType;
-import io.prestosql.spi.type.StandardTypes;
+import io.trino.spi.block.BlockBuilder;
+import io.trino.spi.function.AggregationFunction;
+import io.trino.spi.function.AggregationState;
+import io.trino.spi.function.CombineFunction;
+import io.trino.spi.function.InputFunction;
+import io.trino.spi.function.OutputFunction;
+import io.trino.spi.function.SqlType;
+import io.trino.spi.type.StandardTypes;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -35,7 +35,7 @@ import java.util.Map;
 
 import static com.jampp.presto.udfs.aggregation.utils.JSONAggregationUtils.mapAsJSONString;
 import static com.jampp.presto.udfs.aggregation.utils.JSONAggregationUtils.merge;
-import static io.prestosql.spi.type.VarcharType.VARCHAR;
+import static io.trino.spi.type.VarcharType.VARCHAR;
 
 @AggregationFunction("json_sum")
 public class JSONAggregation
