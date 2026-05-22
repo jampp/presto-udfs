@@ -1,95 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.prestosql</groupId>
-        <artifactId>presto-root</artifactId>
-        <version>306</version>
+        <groupId>io.trino</groupId>
+        <artifactId>trino-root</artifactId>
+        <version>470</version>
     </parent>
 
-    <groupId>com.jampp.presto</groupId>
-    <packaging>presto-plugin</packaging>
-    <version>0.306</version>
+    <groupId>com.jampp.trino</groupId>
 
-    <artifactId>presto-jampp-udfs</artifactId>
-    <name>presto-jampp-udfs</name>
-
+    <artifactId>trino-jampp-udfs</artifactId>
+    <version>470</version>
+    <packaging>trino-plugin</packaging>
+    <name>trino-jampp-udfs</name>
+    <description>Jampp Trino UDFs: json_sum aggregation function</description>
 
     <properties>
-        <air.java.version>1.8.0-171</air.java.version>
+        <air.java.version>23.0.0</air.java.version>
         <air.maven.version>3.3.9</air.maven.version>
-        <presto.version>306</presto.version>
+        <trino.version>470</trino.version>
     </properties>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.17</version>
-                <executions>
-                    <execution>
-                        <id>validate</id>
-                        <phase>validate</phase>
-                        <configuration>
-                           <configLocation>src/checkstyle/checks.xml</configLocation>
-                            <encoding>UTF-8</encoding>
-                            <consoleOutput>true</consoleOutput>
-                            <failsOnError>true</failsOnError>
-                        </configuration>
-                    <goals>
-                        <goal>check</goal>
-                    </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.1</version>
-            </plugin>
-               <plugin>
-                   <groupId>org.gaul</groupId>
-                   <artifactId>modernizer-maven-plugin</artifactId>
-                   <version>1.6.0</version>
-                   <configuration>
-                       <javaVersion>1.8</javaVersion>
-                   </configuration>
-               </plugin>
-               <plugin>
-                    <groupId>io.prestosql</groupId>
-                    <artifactId>presto-maven-plugin</artifactId>
-                    <version>6</version>
-                    <extensions>true</extensions>
-                </plugin>
-          </plugins>
-    </build>
-
     <dependencies>
-        <dependency>
-            <groupId>io.prestosql</groupId>
-            <artifactId>presto-spi</artifactId>
-            <version>${presto.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.airlift</groupId>
-            <artifactId>slice</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.airlift</groupId>
-            <artifactId>json</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.airlift</groupId>
-            <artifactId>units</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -100,8 +34,32 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.airlift</groupId>
+            <artifactId>json</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.trino</groupId>
+            <artifactId>trino-array</artifactId>
+            <version>${trino.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.airlift</groupId>
+            <artifactId>slice</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.trino</groupId>
+            <artifactId>trino-spi</artifactId>
+            <version>${trino.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -110,19 +68,25 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.prestosql</groupId>
-            <artifactId>presto-array</artifactId>
-            <version>${presto.version}</version>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.1.1</version>
-            <scope>compile</scope>
+            <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.trino</groupId>
+                <artifactId>trino-maven-plugin</artifactId>
+                <version>15</version>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

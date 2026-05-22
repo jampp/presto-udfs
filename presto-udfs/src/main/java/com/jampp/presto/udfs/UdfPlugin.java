@@ -16,7 +16,7 @@ package com.jampp.presto.udfs;
 
 import com.google.common.collect.ImmutableSet;
 import com.jampp.presto.udfs.aggregation.JSONAggregation;
-import io.prestosql.spi.Plugin;
+import io.trino.spi.Plugin;
 
 import java.util.Set;
 

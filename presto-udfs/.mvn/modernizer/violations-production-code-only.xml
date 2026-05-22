@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<modernizer>
+
+    <!--
+    Project-local Modernizer violations applied to production code only (not tests).
+    The Trino parent POM points its modernizer-production-code execution at this
+    file. Add additional violation entries here if needed; an empty file is valid.
+    -->
+
+</modernizer>
